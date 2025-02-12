@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,6 +125,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'staticfiles',
+]
+
+STATIC_ROOT = BASE_DIR / 'static'
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'base/static/images')
 
 # Default primary key field type
@@ -139,14 +147,8 @@ MESSAGE_TAGS = {
 
 LOGOUT_REDIRECT_URL = 'login_view'
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "live.smtp.mailtrap.io"  # SMTP server for Gmail
-EMAIL_PORT = 587  # TLS port
-EMAIL_USE_TLS = True  # Use TLS for security
-EMAIL_USE_SSL = False  # Don't use SSL (only one of TLS or SSL should be True)
-EMAIL_HOST_USER = "hello@demomailtrap.com"  # Your email address
-EMAIL_HOST_PASSWORD = "bff7a063c33136b1d2e7e6bbf996e9f8"  # Use an App Password if using Gmail
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 
 
 
